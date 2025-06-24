@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="css/style.css" />
+  <title>DigitalCore</title>
+</head>
+<body>
+  <main>
+    <header>
+      <h1 class="titulo-digitalcore">DigitalCore</h1>
+    </header>
+
+
+    <nav>
+      <ul class="nav-bar">
+        <li><a href="inicio.html" class="active">Inicio</a></li>
+        <li><a href="servicios.html">Nuestros Servicios</a></li>
+        <li><a href="nosotros.html">Nosotros</a></li>
+      </ul>
+    </nav>
+
+
+<!-- Carrusel de promociones -->
+<section class="carrusel">
+  <div class="slides">
+    <div class="slide activo">
+      <img src="img/slide1.jpg" alt="Promo 1">
+    </div>
+    <div class="slide">
+      <img src="img/slide2.jpg" alt="Promo 2">
+    </div>
+    <div class="slide">
+      <img src="img/slide3.jpg" alt="Promo 3">
+    </div>
+  </div>
+
+  <button class="btn-carrusel anterior" onclick="cambiarSlide(-1)">&#10094;</button>
+  <button class="btn-carrusel siguiente" onclick="cambiarSlide(1)">&#10095;</button>
+
+  <div class="puntos-carrusel">
+    <span class="punto" onclick="irASlide(0)"></span>
+    <span class="punto" onclick="irASlide(1)"></span>
+    <span class="punto" onclick="irASlide(2)"></span>
+  </div>
+</section>
+
+
+
+
+    <!-- Sección 1 banner -->
+    <section class="banner-descuentos">
+      <div class="overlay">
+      <h1>Descuentos de locura</h1>
+      <h2>Aprovecha ofertas unicas</h2>
+      <h3>!Solo por tiempo limitado!</h3>
+      <a href="productos/productos.html">Ver productos</a>
+      </div>
+    </section>
+
+
+    <!-- Sección 2 -->
+<!-- Botón de promociones -->
+<section style="text-align: center; padding: 50px 20px; background-color: #191b26;">
+  <h2 style="color: #5ec8f1; font-size: 2rem; margin-bottom: 20px;">¿Buscas descuentos?</h2>
+  <a href="promociones.html" style="
+    background-color: #5ec8f1;
+    color: #0e0e10;
+    padding: 15px 30px;
+    font-weight: bold;
+    font-size: 1.2rem;
+    border-radius: 10px;
+    text-decoration: none;
+    transition: background 0.3s ease;
+    display: inline-block;
+  ">Ver todas las promociones</a>
+</section>
+
+
+
+
+    <!-- Sección 3 -->
+    <article>
+      <section class="noticias-tech">
+        <div>
+          <h2>Noticias tech cada semana</h2>
+          <h3>Tendencias 2025</h3>
+        </div>
+        <div>
+          <table>
+            <tr>
+              <th>Novedades Tech</th>
+              <th>Precios Bajos</th>
+              <th>Stock Limitado</th>
+            </tr>
+            <tr>
+              <th>Rebajas Core</th>
+              <th>Ofertas Exclusivas</th>
+              <th>Compra Inteligente</th>
+            </tr>
+          </table>
+        </div>
+      </section>
+
+
+
+
+      <section class="redes-sociales">
+        <h3>Síguenos en nuestras redes</h3>
+        <div>
+          <a href="https://www.instagram.com/josszx_bll" target="_blank">
+            <img src="img/instragram.jpg" alt="Instagram" />
+          </a>
+          <a href="https://wa.me/qr/EQUK63NAEWD5L1" target="_blank">
+            <img src="img/whatsap.jpg" alt="Whatsap" />
+          </a>
+          <a href="https://www.facebook.com/jesus.bll" target="_blank">
+            <img src="img/facebook.png" alt="Facebook" />
+          </a>
+          <a href="https://www.tiktok.com/@josxxz_155" target="_blank">
+            <img src="img/tiktok.png" alt="Tiktok" />
+          </a>
+        </div>
+      </section>
+    </article>
+
+
+
+
+    <aside>
+      <div>
+         <div>Ubicanos en:</div>
+        <p>Jr. Bellavista Nº 280</p>
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d31100.815009601843!2d-74.72200135!3d-12.99729675!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses-419!2spe!4v1748225265225!5m2!1ses-419!2spe"
+          width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+      <div>
+        <h3>Contactanos</h3>
+        <form action="">
+          <input type="text" placeholder="Nombre completo" required />
+          <!-- Solo correos @gmail.com -->
+          <input
+            type="email"
+            placeholder="Correo electrónico"
+            required
+            pattern="[a-zA-Z0-9._%+-]+@gmail\.com"
+            title="Solo se permiten correos de Gmail (ejemplo@gmail.com)"
+          />
+          <span class="email-error">Por favor, ingresa un correo válido de Gmail (ejemplo@gmail.com).</span>
+          <input type="text" placeholder="Asunto" required />
+          <textarea placeholder="Mensaje" rows="10" required></textarea>
+          <input type="submit" value="Enviar" />
+        </form>
+      </div>
+    </aside>
+
+
+    <!-- Sección 4 footer -->
+    <footer class="footer">
+      <p>&copy; 2025 DigitalCore. Todos los derechos reservados.</p>
+    </footer>
+
+<body>
+  <div id="banner-descuento" class="oculto">
+    <span class="cerrar-banner" onclick="cerrarBanner()">X</span>
+    🎉 ¡Aprovecha nuestras promociones con hasta 50% de descuento por tiempo limitado!
+  </div>
+  <main>
+    <!-- contenido -->
+  </main>
+  <script src="script.js"></script>
+</body>
+
+
+</main>
+</body>
+</html>
+

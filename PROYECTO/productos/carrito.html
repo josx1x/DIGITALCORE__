@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tu Carrito | DigitalCore</title>
+  <link rel="stylesheet" href="../css/style.css" />
+  <style>
+    body {
+      font-family: sans-serif;
+      padding: 20px;
+      background: #f9f9f9;
+    }
+
+    h1 {
+      text-align: center;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 30px;
+    }
+
+    th, td {
+      padding: 12px;
+      border-bottom: 1px solid #ddd;
+      text-align: center;
+    }
+
+    img {
+      width: 80px;
+    }
+
+    .acciones button {
+      padding: 6px 12px;
+      background: crimson;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    .acciones button:hover {
+      background: darkred;
+    }
+
+    #vaciar-carrito {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background: black;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    #total-carrito {
+      font-size: 1.3rem;
+      margin-top: 20px;
+      text-align: right;
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+  <a href="../inicio.html">Inicio</a>
+  <a href="productos.html">Productos</a>
+  <a href="../servicios.html">Nuestros Servicios</a>
+  <a href="../nosotros.html">Nosotros</a>
+  <a href="../promociones.html">Promociones</a>
+</nav>
+
+  <header>
+    <h1>Carrito de Compras</h1>
+  </header>
+
+  <main>
+    <table id="tabla-carrito">
+  <thead>
+    <tr>
+      <th>Imagen</th>
+      <th>Producto</th>
+      <th>Precio</th>
+      <th>Cantidad</th>
+      <th>Subtotal</th>
+      <th>Acción</th>
+    </tr>
+  </thead>
+  <tbody></tbody>
+</table>
+
+
+    <div id="total-carrito">Total: S/ 0.00</div>
+
+    <button id="vaciar-carrito">Vaciar carrito</button>
+<!-- Botón Finalizar Compra -->
+<button id="finalizar-compra">Finalizar Compra</button>
+
+<!-- Resumen tipo factura -->
+<div id="modalFactura" class="modal">
+  <div class="modal-contenido">
+    <span class="cerrar-modal" onclick="cerrarModalFactura()">✖</span>
+    <div id="resumen-factura">...</div>
+    <div id="botones-factura" style="margin-top: 15px; text-align: right;">
+      <button onclick="window.print()">🖨️ Imprimir</button>
+      <button onclick="descargarPDF()">📄 Descargar PDF</button>
+    </div>
+  </div>
+</div>
+
+
+  <footer>
+    <p>&copy; 2025 DigitalCore. Todos los derechos reservados.</p>
+  </footer>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const tablaBody = document.querySelector("#tabla-carrito tbody");
+    const totalTexto = document.getElementById("total-carrito");
+    const btnVaciar = document.getElementById("vaciar-carrito");
+
+    let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+
+    function mostrarCarrito() {
+      tablaBody.innerHTML = "";
+      let total = 0;
+
+      carrito.forEach((producto, index) => {
+        const subtotal = producto.precio * producto.cantidad;
+        total += subtotal;
+
+const fila = document.createElement("tr");
+fila.innerHTML = `
+  <td data-label="Imagen"><img src="${producto.imagen}" alt="${producto.nombre}"></td>
+  <td data-label="Producto">${producto.nombre}</td>
+  <td data-label="Precio">S/ ${producto.precio.toFixed(2)}</td>
+  <td data-label="Cantidad">${producto.cantidad}</td>
+  <td data-label="Subtotal">S/ ${subtotal.toFixed(2)}</td>
+  <td class="acciones" data-label="Acción"><button onclick="eliminar(${index})">Eliminar</button></td>
+`;
+
+
+
+        tablaBody.appendChild(fila);
+      });
+
+      totalTexto.textContent = `Total: S/ ${total.toFixed(2)}`;
+    }
+
+function eliminar(index) {
+  carrito.splice(index, 1);
+  localStorage.setItem("carrito", JSON.stringify(carrito));
+  mostrarCarrito();
+}
+
+
+    btnVaciar.addEventListener("click", () => {
+      carrito = [];
+      localStorage.removeItem("carrito");
+      mostrarCarrito();
+    });
+
+    mostrarCarrito();
+  });
+</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.28/jspdf.plugin.autotable.min.js"></script>
+
+<script>
+  // Exponer jsPDF correctamente
+  window.jspdf = window.jspdf || window.jspdf;
+</script>
+
+
+
+<script src="../script.js"></script> <!-- O tu ruta correspondiente -->
+
+<!-- Contenedor invisible para impresión -->
+<div id="contenedor-pdf"></div>
+
+
+</body>
+</html>
